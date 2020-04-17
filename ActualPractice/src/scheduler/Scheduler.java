@@ -57,8 +57,7 @@ public class Scheduler {
 		
 		if(n > capacity) {
 			rellocate();
-		}
-		
+		}		
 		System.out.print("  When : ");
 		String dateString = kb.next();
 		System.out.print("  Title : ");
@@ -69,18 +68,13 @@ public class Scheduler {
 		myDays[n++] = ev;
 	}
 
-
-
 	private MyDate parsingDate(String dateString) {
 		
-		String [] tokens = dateString.split("/");
-		
+		String [] tokens = dateString.split("/");		
 		int year = Integer.parseInt(tokens[0]);
 		int month = Integer.parseInt(tokens[1]);
-		int day = Integer.parseInt(tokens[2]);
-		
-		MyDate d = new MyDate(year,month,day);
-		
+		int day = Integer.parseInt(tokens[2]);		
+		MyDate d = new MyDate(year,month,day);		
 		return d;
 	}
 

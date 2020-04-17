@@ -33,20 +33,63 @@ public class MyArrayList <T>{
 		n++;
 	}
 
-
 	public void add( T anEntry ) {
-		theData[n] = anEntry;
-		n++;
+		//		theData[n] = anEntry;
+		//		n++;
+		add(n,anEntry);
+	}
+	
+	public int size() { //현재 MyArrayList에 저장되어 있는 데이터의 갯수를 리턴해주는 메서드
+		return n;
+	}
+	
+	public int indexOf( T anEntry ) {
+		for( int i = 0; i < n; i++) {
+			if (theData[i].equals(anEntry)) {
+				return i;
+			}
+		}
+		return -1;
+	}
+	
+	public T get(int index) {
+		
+		if(index<0||index>=n) {
+			throw new ArrayIndexOutOfBoundsException(index);
+		}
+		return theData[index];
+	}
+	
+	public T set(int index, T newValue) {
+		
+		if(index<0||index>=n) {
+			throw new ArrayIndexOutOfBoundsException(index);
+		}
+		T oldValue = theData[index];
+		theData[index] = newValue;
+		return oldValue;
+	}
+	
+	//Mark! Study perfectly
+	public T remove(int index) {
+		if(index<0||index>=n) {
+			throw new ArrayIndexOutOfBoundsException(index);
+		}
+		T returnValue = theData[index];
+		for(int i = index + 1; i < n; i-- )
+			theData[i-1] = theData[i];
+		n--;
+		return returnValue;
 	}
 	
 	private void reallocate() {
 		
 		capacity *= 2;
-//		T[] tmp = (T[]) new Object [capacity];
-//		for(int i = 0; i < n; i++) {
-//			tmp[i] = theData[i];
-//		}
-//		theData = tmp;
+		//		T[] tmp = (T[]) new Object [capacity];
+		//		for(int i = 0; i < n; i++) {
+		//			tmp[i] = theData[i];
+		//		}
+		//		theData = tmp;
 		
 		theData = Arrays.copyOf(theData,capacity);
 	

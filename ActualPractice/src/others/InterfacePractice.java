@@ -1,4 +1,4 @@
-package test;
+package others;
 
 interface IShape{
 	void draw(int x, int y);

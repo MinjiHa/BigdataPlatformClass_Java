@@ -1,4 +1,4 @@
-package scheduler;
+package genericScheduler;
 
 public class DeadlinedEvent extends Event{
 
@@ -14,6 +14,14 @@ public class DeadlinedEvent extends Event{
 	public String toString() {
 		return title + ", ~ " + deadline.toString();
 	}
+
+	@Override
+	public boolean isRelevant(MyDate theDate) {
+		if(deadline.compareTo(theDate)>=0)
+			return true;
+		return false;
+	}
+	
 	
 	
 	

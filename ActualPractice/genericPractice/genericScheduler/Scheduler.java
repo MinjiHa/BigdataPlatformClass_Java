@@ -1,10 +1,12 @@
-package scheduler;
+package genericScheduler;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Scheduler {
 	
 	private int capacity = 3;
+//	public ArrayList<Event> events = new ArrayList<>();
 	Event [] myDays = new Event[capacity];
 	public int n = 0;
 	Scanner kb;
@@ -33,7 +35,7 @@ public class Scheduler {
 			listSchedule();
 		}
 		else if(cmd.equalsIgnoreCase("show")) {
-			
+			showSchedule();
 		}
 		else if(cmd.equalsIgnoreCase("exit"))
 			break;
@@ -44,6 +46,16 @@ public class Scheduler {
 	}
 	
 
+
+	private void showSchedule() {
+		String dateString = kb.next();
+		MyDate theDate = parsingDate(dateString);
+		for(int i = 0; i < n; i++) {
+		if(myDays[i].isRelevant(theDate)) {
+			System.out.println(myDays[i].toString());
+		}
+		}
+	}
 
 	private void listSchedule() {
 		

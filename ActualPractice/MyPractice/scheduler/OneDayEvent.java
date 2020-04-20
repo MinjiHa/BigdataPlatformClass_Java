@@ -12,4 +12,11 @@ public class OneDayEvent extends Event {
 		return title + ", " + date.toString();
 	}
 	
+	@Override
+	public boolean isRelevant(MyDate theDate) {
+		return date.compareTo(theDate) == 0;
+	}
+	
+	
+	
 }

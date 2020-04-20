@@ -6,8 +6,7 @@ public abstract class Event {
 	public Event(String title) {
 		this.title = title;
 	}
-
-	public boolean isRelevant(MyDate theDate) {
-		return false;
-	}	
+	
+	public abstract boolean isRelevant(MyDate theDate);
+	
 }

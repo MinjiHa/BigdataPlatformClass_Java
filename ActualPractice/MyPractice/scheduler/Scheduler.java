@@ -1,12 +1,10 @@
 package scheduler;
 
-import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Scheduler {
 	
 	private int capacity = 3;
-//	public ArrayList<Event> events = new ArrayList<>();
 	Event [] myDays = new Event[capacity];
 	public int n = 0;
 	Scanner kb;

@@ -1,14 +1,18 @@
 package genericScheduler;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
 import java.util.Scanner;
 
 public class Scheduler {
 	
-	private int capacity = 3;
-//	public ArrayList<Event> events = new ArrayList<>();
-	Event [] myDays = new Event[capacity];
-	public int n = 0;
+//	private int capacity = 3;
+//	Event [] myDays = new Event[capacity];
+//	public int n = 0;
+	
+	public ArrayList<Event> events = new ArrayList<>();
 	Scanner kb;
 	
 	public void processCommend() {
@@ -37,6 +41,9 @@ public class Scheduler {
 		else if(cmd.equalsIgnoreCase("show")) {
 			showSchedule();
 		}
+//		else if(cmd.equalsIgnoreCase("sort")) {
+//
+//		}
 		else if(cmd.equalsIgnoreCase("exit"))
 			break;
 		
@@ -50,26 +57,23 @@ public class Scheduler {
 	private void showSchedule() {
 		String dateString = kb.next();
 		MyDate theDate = parsingDate(dateString);
-		for(int i = 0; i < n; i++) {
-		if(myDays[i].isRelevant(theDate)) {
-			System.out.println(myDays[i].toString());
+		for(Event e : events) {
+		if(e.isRelevant(theDate)) {
+			System.out.println(e.toString());
 		}
 		}
 	}
 
 	private void listSchedule() {
 		
-		for(int i = 0; i < n; i++) {
-		System.out.println(myDays[i].toString());
+		for(Event e : events) {
+		System.out.println(e.toString());
 		}
 		
 	}
 
 	private void addOneday() {
-		
-		if(n > capacity) {
-			rellocate();
-		}		
+				
 		System.out.print("  When : ");
 		String dateString = kb.next();
 		System.out.print("  Title : ");
@@ -77,7 +81,7 @@ public class Scheduler {
 		
 		MyDate date = parsingDate(dateString);
 		OneDayEvent ev = new OneDayEvent(title,date);
-		myDays[n++] = ev;
+		events.add(ev);
 	}
 
 	private MyDate parsingDate(String dateString) {
@@ -94,10 +98,6 @@ public class Scheduler {
 
 	private void addDuration() {
 		
-		if(n > capacity) {
-			rellocate();
-		}
-		
 		System.out.print("  Begin : ");
 		String beginString = kb.next();
 		System.out.print("  End : ");
@@ -108,18 +108,14 @@ public class Scheduler {
 		MyDate begin = parsingDate(beginString);
 		MyDate end = parsingDate(endString);
 		DurationEvent ev = new DurationEvent(title,begin,end);
-		myDays[n++] = ev;
+		events.add(ev);
 		
 	}
 
 
 
 	private void addDeadline() {
-		
-		if(n > capacity) {
-			rellocate();
-		}
-		
+				
 		System.out.print("  Deadline Point : ");
 		String dateString = kb.next();
 		System.out.print("  Title : ");
@@ -127,20 +123,20 @@ public class Scheduler {
 		
 		MyDate date = parsingDate(dateString);
 		DeadlinedEvent ev = new DeadlinedEvent(title,date);
-		myDays[n++] = ev;
+		events.add(ev);
 		
 	}
 	
-	private void rellocate() {
-		
-		Event [] tmpArray = new Event[capacity*2];
-		for(int i = 0; i<n; i++) {
-			tmpArray[i] = myDays[i];
-		}
-		myDays = tmpArray;
-		capacity*=2;
-		
-	}
+//	private void rellocate() {
+//		
+//		Event [] tmpArray = new Event[capacity*2];
+//		for(int i = 0; i<n; i++) {
+//			tmpArray[i] = myDays[i];
+//		}
+//		myDays = tmpArray;
+//		capacity*=2;
+//		
+//	}
 
 
 
